@@ -1,12 +1,20 @@
 import React, { useState } from 'react'
 import { Picker } from '@react-native-picker/picker';
+import { useNavigation } from '@react-navigation/native';
+import { propsStack } from '../../routes/Stack/Models';
 
-import { Header, Container, Title, Body, Fields, Button, ButtonText } from './styles'
+import { Header, Container, Title, Body, Fields, Button, ButtonText, ButtonCancel, ButtonTextCancel } from './styles'
+
 
 
 export function PresetForm () {
 
-    const [selectedValue, setSelectedValue] = useState("1");
+   const navigation = useNavigation();
+
+    const [escola, setEscola] = useState("1");
+    const [grau, setGrau] = useState("1")
+    const [serie, setSerie] = useState("1")
+    const [etapa, setEtapa] = useState("1")
 
     const escolas = [
     {
@@ -18,10 +26,43 @@ export function PresetForm () {
         nome: 'UFAM'
     },
     {
-        id: 3,
+        id: 7,
         nome: 'UEA'
     },
     ];
+
+    const graus = [
+        {
+            id: 1,
+            nome: 'Ensino Médio'
+        },
+        {
+            id: 2,
+            nome: 'Ensino Fundamental'
+        },
+    ]
+
+    const series = [
+        {
+            id: 1,
+            nome: '1o ano'
+        },
+        {
+            id: 2,
+            nome: '2o ano'
+        },
+    ]
+
+    const etapas = [
+        {
+            id: 1,
+            nome: 'Etapa 1'
+        },
+        {
+            id: 2,
+            nome: 'Etapa 2'
+        },
+    ]
 
     return (
         <Container>
@@ -30,8 +71,9 @@ export function PresetForm () {
             </Header>
             <Body>
                 <Fields>
+                    {/* escolas */}
                     <Picker
-                        selectedValue={selectedValue}
+                        selectedValue={escola}
                         style={{ 
                             height: 50, 
                             width: '70%', 
@@ -40,15 +82,18 @@ export function PresetForm () {
                             backgroundColor: '#d3ced3',
                             
                         }}
-                        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                        onValueChange={(itemValue, itemIndex) => {
+                            setEscola(itemValue);
+                        }}
                     >
-                    {escolas.map( escola => (
-                        <Picker.Item key={escola.id} label={escola.nome} value={escola.id} />
-                    ))}
+                        {escolas.map( esc => (
+                            <Picker.Item key={esc.id} label={esc.nome} value={esc.id} />
+                        ))}
                     </Picker>
-
+                    
+                    {/* graus */}
                     <Picker
-                        selectedValue={selectedValue}
+                        selectedValue={grau}
                         style={{ 
                             height: 50, 
                             width: '70%', 
@@ -57,15 +102,18 @@ export function PresetForm () {
                             backgroundColor: '#d3ced3',
                             
                         }}
-                        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                        onValueChange={(itemValue, itemIndex) => {
+                            setGrau(itemValue);
+                        }}
                     >
-                    {escolas.map( escola => (
-                        <Picker.Item key={escola.id} label={escola.nome} value={escola.id} />
-                    ))}
+                        {graus.map( gra => (
+                            <Picker.Item key={gra.id} label={gra.nome} value={gra.id} />
+                        ))}
                     </Picker>
 
+                    {/* series */}
                     <Picker
-                        selectedValue={selectedValue}
+                        selectedValue={serie}
                         style={{ 
                             height: 50, 
                             width: '70%', 
@@ -74,35 +122,54 @@ export function PresetForm () {
                             backgroundColor: '#d3ced3',
                             
                         }}
-                        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                        onValueChange={(itemValue, itemIndex) => {
+                            setSerie(itemValue);
+                        }}
                     >
-                    {escolas.map( escola => (
-                        <Picker.Item key={escola.id} label={escola.nome} value={escola.id} />
-                    ))}
+                        {series.map( ser => (
+                            <Picker.Item key={ser.id} label={ser.nome} value={ser.id} />
+                        ))}
                     </Picker>
 
+                    {/* etapas */}
                     <Picker
-                        selectedValue={selectedValue}
+                        selectedValue={etapa}
                         style={{ 
                             height: 50, 
                             width: '70%', 
-                            backgroundColor: '#d3ced3',
                             margin: 5,
-                            padding: 2,                            
+                            padding: 2,
+                            backgroundColor: '#d3ced3',
+                            
                         }}
-                        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                        onValueChange={(itemValue, itemIndex) => {
+                            setEtapa(itemValue);
+                        }}
                     >
-                    {escolas.map( escola => (
-                        <Picker.Item key={escola.id} label={escola.nome} value={escola.id} />
-                    ))}
+                        {etapas.map( eta => (
+                            <Picker.Item key={eta.id} label={eta.nome} value={eta.id} />
+                        ))}
                     </Picker>
                 </Fields>
-
-                    <Button>
+                
+                <Fields>
+                    <Button onPress={ () => navigation.navigate('Form1', {
+                        escola,
+                        grau,
+                        serie,
+                        etapa
+                    })}>
                         <ButtonText>
                             Iniciar
                         </ButtonText>
                     </Button>
+
+                    <ButtonCancel onPress={ () => navigation.goBack()}>
+                        <ButtonTextCancel>
+                            Cancelar
+                        </ButtonTextCancel>
+                    </ButtonCancel>
+                </Fields>
 
             </Body>
         </Container>
