@@ -1,7 +1,8 @@
 import styled from "styled-components/native";
 
 export const Container = styled.View`
-
+    flex: 1;
+    background-color: #fff;
 `
 
 
@@ -24,7 +25,7 @@ export const Title = styled.Text`
 
 export const Body = styled.View`
 
-    height: 600px;
+    height: 700px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -35,6 +36,11 @@ export const Fields = styled.View`
     display: flex;
     justify-content: center;
     align-items: center;
+`
+
+export const TitlePicker = styled.Text`
+    font-size: 20px;
+    padding: 5px;
 `
 
 export const Button = styled.TouchableOpacity`

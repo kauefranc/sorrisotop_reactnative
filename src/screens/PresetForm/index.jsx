@@ -3,7 +3,7 @@ import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 import { propsStack } from '../../routes/Stack/Models';
 
-import { Header, Container, Title, Body, Fields, Button, ButtonText, ButtonCancel, ButtonTextCancel } from './styles'
+import { Header, Container, Title, Body, Fields, TitlePicker, Button, ButtonText, ButtonCancel, ButtonTextCancel } from './styles'
 
 
 
@@ -72,6 +72,7 @@ export function PresetForm () {
             <Body>
                 <Fields>
                     {/* escolas */}
+                    <TitlePicker>Escola: </TitlePicker>
                     <Picker
                         selectedValue={escola}
                         style={{ 
@@ -79,7 +80,7 @@ export function PresetForm () {
                             width: '70%', 
                             margin: 5,
                             padding: 2,
-                            backgroundColor: '#d3ced3',
+                            backgroundColor: '#f3f3f3',
                             
                         }}
                         onValueChange={(itemValue, itemIndex) => {
@@ -92,6 +93,7 @@ export function PresetForm () {
                     </Picker>
                     
                     {/* graus */}
+                    <TitlePicker>Grau: </TitlePicker>
                     <Picker
                         selectedValue={grau}
                         style={{ 
@@ -99,7 +101,7 @@ export function PresetForm () {
                             width: '70%', 
                             margin: 5,
                             padding: 2,
-                            backgroundColor: '#d3ced3',
+                            backgroundColor: '#f3f3f3',
                             
                         }}
                         onValueChange={(itemValue, itemIndex) => {
@@ -112,6 +114,7 @@ export function PresetForm () {
                     </Picker>
 
                     {/* series */}
+                    <TitlePicker>Série: </TitlePicker>
                     <Picker
                         selectedValue={serie}
                         style={{ 
@@ -119,8 +122,11 @@ export function PresetForm () {
                             width: '70%', 
                             margin: 5,
                             padding: 2,
-                            backgroundColor: '#d3ced3',
+                            backgroundColor: '#f3f3f3',
                             
+                            
+                        }}
+                        itemStyle={{
                         }}
                         onValueChange={(itemValue, itemIndex) => {
                             setSerie(itemValue);
@@ -132,6 +138,7 @@ export function PresetForm () {
                     </Picker>
 
                     {/* etapas */}
+                    <TitlePicker>Etapa: </TitlePicker>
                     <Picker
                         selectedValue={etapa}
                         style={{ 
@@ -139,7 +146,7 @@ export function PresetForm () {
                             width: '70%', 
                             margin: 5,
                             padding: 2,
-                            backgroundColor: '#d3ced3',
+                            backgroundColor: '#f3f3f3',
                             
                         }}
                         onValueChange={(itemValue, itemIndex) => {
