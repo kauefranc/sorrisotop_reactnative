@@ -55,3 +55,47 @@ export const WrapperSelect = styled.View`
 
 `
 
+export const Button = styled.TouchableOpacity`
+
+    width: 70%;
+    height: 50px;
+    background-color: #0d6efd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0 50px 0;
+    border-radius: 50px;
+
+`
+
+export const ButtonText = styled.Text`
+
+    color: #fff;
+    font-family: ${({theme}) => theme.fonts.bold};
+    text-transform: uppercase;
+    line-height: 16px;
+    letter-spacing: 0.5px;
+`
+
+export const ButtonCancel = styled.TouchableOpacity`
+
+    width: 70%;
+    height: 50px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    border-radius: 50px;
+    border: 1px solid #e56767;
+
+`
+
+export const ButtonTextCancel = styled.Text`
+
+    color: #e56767;
+    font-family: ${({theme}) => theme.fonts.bold};
+    text-transform: uppercase;
+    line-height: 16px;
+    letter-spacing: 0.5px;
+`

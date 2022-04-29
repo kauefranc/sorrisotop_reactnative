@@ -1,13 +1,20 @@
 import { useRoute } from "@react-navigation/native";
 import React, { useState }from "react";
+import { Picker } from '@react-native-picker/picker';
+import BouncyCheckbox from "react-native-bouncy-checkbox";
+import { useNavigation } from '@react-navigation/native';
+
+
 import { RadioButton } from "../../components/RadioButton";
-import { Container, Fields, FieldsSelect, WrapperSelect, Ask, Header, Title } from "./styles";
+
+import { Container, Fields, FieldsSelect, WrapperSelect, Ask, Header, Title, Button, ButtonText, ButtonCancel, ButtonTextCancel} from "./styles";
 
 
 
 export function Form1 () {
 
-    const route = useRoute();
+   const route = useRoute();
+   const navigation = useNavigation();
     
     const {            
         escola,
@@ -16,11 +23,34 @@ export function Form1 () {
         etapa 
     } = route.params;
 
+    const [escol, setEscol] = useState("1");
+
     const [r1, setR1] = useState('');
     const [r2, setR2] = useState('');
+
+    let bouncyCheckboxRef = null;
+    const [checkboxState, setCheckboxState] = useState(false);
+    const [checkboxState2, setCheckboxState2] = useState(false);
+
+
     const [r4, setR4] = useState('');
     const [r5, setR5] = useState('');
     const [r6, setR6] = useState('');
+
+    const escolas = [
+        {
+            id: 1,
+            nome: 'Fundação Matias Machline'
+        },
+        {
+            id: 2,
+            nome: 'UFAM'
+        },
+        {
+            id: 7,
+            nome: 'UEA'
+        },
+        ];
 
 
     return (
@@ -32,13 +62,45 @@ export function Form1 () {
             <Fields>
                 <FieldsSelect>
                     <WrapperSelect>
-                        <Ask>Text</Ask>
-                        <Ask>SELECT 1</Ask>
+                        <Ask>Idade:</Ask>
+                        <Picker
+                        selectedValue={escol}
+                        style={{ 
+                            height: 50, 
+                            width: 175, 
+                            margin: 5,
+                            padding: 2,
+                            backgroundColor: '#f3f3f3',
+                            
+                        }}
+                        onValueChange={(itemValue, itemIndex) => {
+                            setEscol(itemValue);
+                        }}
+                    >
+                        {escolas.map( esc => (
+                            <Picker.Item key={esc.id} label={esc.nome} value={esc.id} />
+                        ))}
+                    </Picker>
                     </WrapperSelect>
 
                     <WrapperSelect>
-                        <Ask>Text</Ask>
-                        <Ask>SELECT 2</Ask>
+                        <Ask>Genero:</Ask>
+                        <Picker
+                        selectedValue={escol}
+                        style={{ 
+                            height: 50, 
+                            width: 175, 
+                            backgroundColor: '#f3f3f3',
+                            
+                        }}
+                        onValueChange={(itemValue, itemIndex) => {
+                            setEscol(itemValue);
+                        }}
+                    >
+                        {escolas.map( esc => (
+                            <Picker.Item key={esc.id} label={esc.nome} value={esc.id} />
+                        ))}
+                    </Picker>
                     </WrapperSelect>
                 </FieldsSelect>
 
@@ -59,11 +121,54 @@ export function Form1 () {
 
 
                 <Ask>3 - Qual(is) temas você gostaria de conhecer melhor?</Ask>
-                {/*
-                (     ) CÁRIE - COMO PREVENIR    (     ) DOENÇAS DA GENGIVA E SUA PREVENÇÃO
-(     ) DENTES TORTOS - O QUE FAZER   (    ) COMO LIMPAR CORRETAMENTE A BOCA
-(    ) ALIMENTAÇÃO E SAÚDE BUCAL   ?          
-                */}
+
+                     <BouncyCheckbox
+                        style={{ marginTop: 16 }}
+                        ref={(ref) => (bouncyCheckboxRef = ref)}
+                        isChecked={checkboxState}
+                        text="Cárie - Como prenenir?"
+                        disableBuiltInState
+                        onPress={() => setCheckboxState(!checkboxState)}
+                    />
+
+                    <BouncyCheckbox
+                        style={{ marginTop: 16 }}
+                        ref={(ref) => (bouncyCheckboxRef = ref)}
+                        isChecked={checkboxState2}
+                        text="Doenças da gengiva e sua prevenção"
+                        disableBuiltInState
+                        onPress={() => setCheckboxState2(!checkboxState2)}
+                    />
+
+                    <BouncyCheckbox
+                        style={{ marginTop: 16 }}
+                        ref={(ref) => (bouncyCheckboxRef = ref)}
+                        isChecked={checkboxState2}
+                        text="Dentes tortos - o que fazer?"
+                        disableBuiltInState
+                        onPress={() => setCheckboxState2(!checkboxState2)}
+                    />
+
+                    <BouncyCheckbox
+                        style={{ marginTop: 16 }}
+                        ref={(ref) => (bouncyCheckboxRef = ref)}
+                        isChecked={checkboxState2}
+                        text="Como limpar corretamente a boca"
+                        disableBuiltInState
+                        onPress={() => setCheckboxState2(!checkboxState2)}
+                    />
+
+                    <BouncyCheckbox
+                        style={{ marginTop: 16 }}
+                        ref={(ref) => (bouncyCheckboxRef = ref)}
+                        isChecked={checkboxState2}
+                        text="Alimentação e saúde bucal"
+                        disableBuiltInState
+                        onPress={() => setCheckboxState2(!checkboxState2)}
+                    />
+                
+
+
                 <Ask>4 - Há quanto tempo você não vai ao dentista?</Ask>
                 <RadioButton 
                     selected={r4}
@@ -71,8 +176,6 @@ export function Form1 () {
                     onChangeSelect={(opt) => setR4(opt)}
                 /> 
 
-                {/* (   ) MENOS DE 06 MESES  (   ) 06 A 12 MESES  (   ) 13 A 18 MESES 
- (    ) MAIS DE 02 ANOS (   ) NUNCA FUI */}
                 <Ask>5 - Você já teve ou está com dor de dente?</Ask>
                 <RadioButton 
                     selected={r5}
@@ -86,7 +189,16 @@ export function Form1 () {
                     selected={r6}
                     options={['sim', 'não']} 
                     onChangeSelect={(opt) => setR6(opt)}
-                /> 
+                />
+
+                <Fields>
+                    <Button onPress={ () => navigation.navigate('Home')}>
+                        <ButtonText>
+                            Finalizar
+                        </ButtonText>
+                    </Button>
+
+                </Fields> 
 
             </Fields>
         </Container>

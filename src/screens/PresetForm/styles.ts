@@ -63,8 +63,6 @@ export const ButtonText = styled.Text`
     text-transform: uppercase;
     line-height: 16px;
     letter-spacing: 0.5px;
-
-
 `
 
 export const ButtonCancel = styled.TouchableOpacity`
@@ -88,7 +86,5 @@ export const ButtonTextCancel = styled.Text`
     text-transform: uppercase;
     line-height: 16px;
     letter-spacing: 0.5px;
-
-
 `
 

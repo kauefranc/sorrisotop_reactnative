@@ -17,7 +17,7 @@ export const Radio = styled.TouchableOpacity`
     display: flex;
     justify-content: center;
     align-items: center;
-    border: #ff0000;
+    border: #005757;
     border-radius: 999px;
 `
 
