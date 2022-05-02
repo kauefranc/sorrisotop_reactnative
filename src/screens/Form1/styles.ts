@@ -63,7 +63,8 @@ export const Button = styled.TouchableOpacity`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 10px 0 50px 0;
+    margin-top: -30px;
+    margin-bottom: 50px;
     border-radius: 50px;
 
 `
@@ -98,4 +99,8 @@ export const ButtonTextCancel = styled.Text`
     text-transform: uppercase;
     line-height: 16px;
     letter-spacing: 0.5px;
+`
+
+export const WrapperCheckBox = styled.View`
+
 `
