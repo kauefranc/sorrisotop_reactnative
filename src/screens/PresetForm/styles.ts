@@ -88,3 +88,11 @@ export const ButtonTextCancel = styled.Text`
     letter-spacing: 0.5px;
 `
 
+export const WrappePicker = styled.View`
+
+    width: 70%;
+    display: flex;
+    align-items: center;
+    border: 1px solid #000;
+    border-radius: 4px;
+`

@@ -102,5 +102,5 @@ export const ButtonTextCancel = styled.Text`
 `
 
 export const WrapperCheckBox = styled.View`
-
+    
 `

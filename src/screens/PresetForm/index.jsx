@@ -1,35 +1,31 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 import { propsStack } from '../../routes/Stack/Models';
+import { addSchool, CreateTableSchools, getSchools } from '../../services/Schools';
 
-import { Header, Container, Title, Body, Fields, TitlePicker, Button, ButtonText, ButtonCancel, ButtonTextCancel } from './styles'
+import { Header, Container, Title, Body, Fields, TitlePicker, Button, ButtonText, ButtonCancel, ButtonTextCancel, WrappePicker } from './styles'
 
 
 
 export function PresetForm () {
 
-   const navigation = useNavigation();
+    const navigation = useNavigation();
 
-    const [escola, setEscola] = useState("1");
-    const [grau, setGrau] = useState("1")
-    const [serie, setSerie] = useState("1")
-    const [etapa, setEtapa] = useState("1")
+    const [escolas, setEscolas] = useState([])
+    const [escola, setEscola] = useState("");
+    const [grau, setGrau] = useState("")
+    const [serie, setSerie] = useState("")
+    const [etapa, setEtapa] = useState("")
 
-    const escolas = [
-    {
-        id: 1,
-        nome: 'Fundação Matias Machline'
-    },
-    {
-        id: 2,
-        nome: 'UFAM'
-    },
-    {
-        id: 7,
-        nome: 'UEA'
-    },
-    ];
+    useEffect( async () => {
+
+            const result =  await getSchools()
+            setEscolas(result)
+
+    }, [])
+    
+
 
     const graus = [
         {
@@ -44,12 +40,32 @@ export function PresetForm () {
 
     const series = [
         {
+            id: 6,
+            nome: '6o ano'
+        },
+        {
+            id: 7,
+            nome: '7o ano'
+        },
+        {
+            id: 8,
+            nome: '8o ano'
+        },
+        {
+            id: 9,
+            nome: '9o ano'
+        },
+        {
             id: 1,
             nome: '1o ano'
         },
         {
             id: 2,
             nome: '2o ano'
+        },
+        {
+            id: 2,
+            nome: '3o ano'
         },
     ]
 
@@ -73,80 +89,86 @@ export function PresetForm () {
                 <Fields>
                     {/* escolas */}
                     <TitlePicker>Escola: </TitlePicker>
-                    <Picker
-                        selectedValue={escola}
-                        style={{ 
-                            height: 50, 
-                            width: '70%', 
-                            margin: 5,
-                            padding: 2,
-                            backgroundColor: '#f3f3f3',
-                            
-                        }}
-                        onValueChange={(itemValue, itemIndex) => {
-                            setEscola(itemValue);
-                        }}
-                    >
-                        {escolas.map( esc => (
-                            <Picker.Item key={esc.id} label={esc.nome} value={esc.id} />
-                        ))}
-                    </Picker>
+                    <WrappePicker>
+                        <Picker
+                            selectedValue={escola}
+                            style={{ 
+                                height: 50, 
+                                width: '100%', 
+                                marginBottom: 5,
+                                backgroundColor: '#ffffff',
+                                color: escola ? '#000' : '#fff'
+                                
+                            }}
+                            onValueChange={(itemValue, itemIndex) => {
+                                setEscola(itemValue);
+                            }}
+                        >
+                            {escolas.map( esc => (
+                                <Picker.Item key={esc.id} label={esc.nome} value={esc.id} />
+                            ))}
+                        </Picker>
+                    </WrappePicker>
                     
                     {/* graus */}
                     <TitlePicker>Grau: </TitlePicker>
-                    <Picker
-                        selectedValue={grau}
-                        style={{ 
-                            height: 50, 
-                            width: '70%', 
-                            margin: 5,
-                            padding: 2,
-                            backgroundColor: '#f3f3f3',
-                            
-                        }}
-                        onValueChange={(itemValue, itemIndex) => {
-                            setGrau(itemValue);
-                        }}
-                    >
-                        {graus.map( gra => (
-                            <Picker.Item key={gra.id} label={gra.nome} value={gra.id} />
-                        ))}
-                    </Picker>
+                    <WrappePicker>
+                        <Picker
+                            selectedValue={grau}
+                            style={{ 
+                                height: 50, 
+                                width: '100%', 
+                                marginBottom: 5,
+                                backgroundColor: '#ffffff',
+                                color: grau ? '#000' : '#fff'
+                                
+                            }}
+                            onValueChange={(itemValue, itemIndex) => {
+                                setGrau(itemValue);
+                            }}
+                        >
+                            {graus.map( gra => (
+                                <Picker.Item key={gra.id} label={gra.nome} value={gra.nome} />
+                            ))}
+                        </Picker>
+                    </WrappePicker>
 
                     {/* series */}
                     <TitlePicker>Série: </TitlePicker>
-                    <Picker
-                        selectedValue={serie}
-                        style={{ 
-                            height: 50, 
-                            width: '70%', 
-                            margin: 5,
-                            padding: 2,
-                            backgroundColor: '#f3f3f3',
-                            
-                            
-                        }}
-                        itemStyle={{
-                        }}
-                        onValueChange={(itemValue, itemIndex) => {
-                            setSerie(itemValue);
-                        }}
-                    >
-                        {series.map( ser => (
-                            <Picker.Item key={ser.id} label={ser.nome} value={ser.id} />
-                        ))}
-                    </Picker>
+                    <WrappePicker>
+                        <Picker
+                            selectedValue={serie}
+                            style={{ 
+                                height: 50, 
+                                width: '100%', 
+                                marginBottom: 5,
+                                color: serie ? '#000' : '#fff'
+                                
+                                
+                            }}
+                            itemStyle={{
+                            }}
+                            onValueChange={(itemValue, itemIndex) => {
+                                setSerie(itemValue);
+                            }}
+                        >
+                            {series.map( ser => (
+                                <Picker.Item key={ser.id} label={ser.nome} value={ser.nome} />
+                            ))}
+                        </Picker>
+                    </WrappePicker>
 
                     {/* etapas */}
                     <TitlePicker>Etapa: </TitlePicker>
+                    <WrappePicker>
                     <Picker
                         selectedValue={etapa}
                         style={{ 
+
                             height: 50, 
-                            width: '70%', 
-                            margin: 5,
-                            padding: 2,
-                            backgroundColor: '#f3f3f3',
+                            width: '100%', 
+                            marginBottom: 5,
+                            color: etapa ? '#000' : '#fff'
                             
                         }}
                         onValueChange={(itemValue, itemIndex) => {
@@ -157,15 +179,22 @@ export function PresetForm () {
                             <Picker.Item key={eta.id} label={eta.nome} value={eta.id} />
                         ))}
                     </Picker>
+                    </WrappePicker>
                 </Fields>
                 
                 <Fields>
-                    <Button onPress={ () => navigation.navigate('Form1', {
-                        escola,
-                        grau,
-                        serie,
-                        etapa
-                    })}>
+                    <Button onPress={ () => {
+
+                    if(escola && grau && serie && etapa) {
+                        navigation.navigate('Form1', {
+                            escola,
+                            grau,
+                            serie,
+                            etapa
+                        })
+                    } else alert("Preencha todos os dados!");
+                    
+                    }}>
                         <ButtonText>
                             Iniciar
                         </ButtonText>

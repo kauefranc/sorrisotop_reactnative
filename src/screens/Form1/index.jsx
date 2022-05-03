@@ -1,18 +1,18 @@
 import { useRoute } from "@react-navigation/native";
-import React, { useState }from "react";
+import React, { useState, useEffect }from "react";
 import { Picker } from '@react-native-picker/picker';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { useNavigation } from '@react-navigation/native';
-import { useScrollToTop } from '@react-navigation/native';
 
 
 import { RadioButton } from "../../components/RadioButton";
 
-import { Container, Fields, FieldsSelect, WrapperSelect, Ask, Header, Title, Button, ButtonText, ButtonCancel, ButtonTextCancel, WrapperCheckBox} from "./styles";
+import { Container, Fields, FieldsSelect, WrapperSelect, Ask, Header, Title, Button, ButtonText, WrapperCheckBox} from "./styles";
+import { addStudent, CreateTable, getStudent } from "../../services/Students";
 
 
 export function Form1 () {
-
+    
    const ref = React.useRef(null);
 
    const route = useRoute();
@@ -51,19 +51,44 @@ export function Form1 () {
     const generos = ["Masculino","Feminino", "Outros"];
 
 
-    const SalvaForm = () => {
+    const SalvaForm = async () => {
 
         if(r1 && r2 && r4 && r5 && r6) {
 
+            const Student = {
+                escolaID: escola,
+                grau: grau,
+                serie: serie,
+                etapa: etapa,
+
+                genero: genero,
+                idade: idade,
+
+                r1: r1,
+                r2: r2,
+
+                carie: checkboxState ? 1 : 0,
+                gengiva: checkboxState2 ? 1 : 0,
+                dentetorto: checkboxState3 ? 1 : 0,
+                limparboca: checkboxState4 ? 1 : 0,
+                saudebucal: checkboxState5 ? 1 : 0,
+
+                r4: r4,
+                r5: r5,
+                r6: r6,
+            }
+
+
+            await addStudent(Student);
+            console.log(Student)
+
             setR1('');
             setR2('');
-
             setCheckboxState(false);
             setCheckboxState2(false);
             setCheckboxState3(false);
             setCheckboxState4(false);
             setCheckboxState5(false);
-
             setR4('');
             setR5('');
             setR6('');
@@ -75,18 +100,19 @@ export function Form1 () {
             });
             return;
         }
+
+
+
         alert("Preencha todos os campos!");
     }
+
+
+
     
-    
-    escola,
-    grau,
-    serie,
-    etapa 
     return (
         <Container ref={ref}>
             <Header>
-                <Title>Formulário</Title>
+                <Title>Formulário { escola } { grau } {serie} {etapa}</Title>
             </Header>
             
             <Fields>
@@ -98,7 +124,7 @@ export function Form1 () {
                         selectedValue={genero}
                         style={{ 
                             height: 50, 
-                            width: 175, 
+                            width: 300, 
                             margin: 5,
                             padding: 2,
                             backgroundColor: '#f3f3f3',
@@ -109,7 +135,7 @@ export function Form1 () {
                         }}
                         >
                             {generos.map( gen => (
-                                <Picker.Item label={gen} value={gen} />
+                                <Picker.Item key={gen} label={gen} value={gen} />
                             ))}
                         </Picker>
                     </WrapperSelect>
@@ -121,7 +147,7 @@ export function Form1 () {
                         selectedValue={idade}
                         style={{ 
                             height: 50, 
-                            width: 175, 
+                            width: 300, 
                             margin: 5,
                             padding: 2,
                             backgroundColor: '#f3f3f3',
@@ -132,7 +158,7 @@ export function Form1 () {
                         }}
                     >
                         {idades.map( ida => (
-                            <Picker.Item label={ida.toString()} value={ida} />
+                            <Picker.Item key={ida} label={ida.toString()} value={ida} />
                         ))}
                     </Picker>
                     </WrapperSelect>
