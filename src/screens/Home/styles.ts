@@ -1,4 +1,5 @@
 import styled from 'styled-components/native'
+import { RFValue } from 'react-native-responsive-fontsize';
 
 export const Container = styled.View`
     flex: 1;
@@ -14,8 +15,8 @@ export const Title = styled.Text`
 `;
 
 export const Logo = styled.Image`
-    width: 200px;
-    height: 200px;
+    width: ${RFValue(400)}px;
+    height: ${RFValue(300)}px;
     margin-bottom: 20px;
 `
 

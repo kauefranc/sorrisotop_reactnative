@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { ButtonText } from '../PresetForm/styles'
 import { Button, ButtonTextBlue, ButtonWhite, Container, Logo, Title } from './styles'
 import { useNavigation } from '@react-navigation/native';
+import NetInfo from "@react-native-community/netinfo";
 
 import { propsStack } from '../../routes/Stack/Models';
 import { CreateTable, getStudent } from '../../services/Students';
@@ -13,18 +14,25 @@ export function Home () {
     useEffect(() => {
         CreateTable();
         CreateTableSchools();
+        const unsubscribe = NetInfo.addEventListener(state => {
+            console.log("Connection type", state.type);
+            console.log("Is connected?", state.isConnected);
+            return state.isConnected
+        });
+        
     }, [])
+
 
 
     const getDataSchools = async () => {
         
-        // const schools = {
-        //     id: 2,
-        //     nome: "UEA"
-        // }
+        const schools = {
+            id: 3,
+            nome: "FMM"
+        }
 
-        // await addSchool(schools);
-        // console.log(schools);
+        await addSchool(schools);
+        console.log(schools);
 
 
     }

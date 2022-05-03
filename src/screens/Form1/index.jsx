@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { RadioButton } from "../../components/RadioButton";
 
-import { Container, Fields, FieldsSelect, WrapperSelect, Ask, Header, Title, Button, ButtonText, WrapperCheckBox} from "./styles";
+import { Container, Fields, FieldsSelect, WrapperSelect, WrappePicker, Ask, Header, Title, Button, ButtonText, WrapperCheckBox} from "./styles";
 import { addStudent, CreateTable, getStudent } from "../../services/Students";
 
 
@@ -25,7 +25,7 @@ export function Form1 () {
         etapa 
     } = route.params;
 
-    const [idade, setIdade] = useState(15);
+    const [idade, setIdade] = useState(0);
     const [genero, setGenero] = useState('');
 
     const [r1, setR1] = useState('');
@@ -112,55 +112,61 @@ export function Form1 () {
     return (
         <Container ref={ref}>
             <Header>
-                <Title>Formulário { escola } { grau } {serie} {etapa}</Title>
+                <Title>Formulário</Title>
             </Header>
             
             <Fields>
                 <FieldsSelect>
                     
                     <WrapperSelect>
-                        <Ask>Gênero:</Ask>   
+                        <Ask>Gênero:</Ask>
+                        <WrappePicker>
                         <Picker
-                        selectedValue={genero}
-                        style={{ 
-                            height: 50, 
-                            width: 300, 
-                            margin: 5,
-                            padding: 2,
-                            backgroundColor: '#f3f3f3',
-                            
-                        }}
-                        onValueChange={(itemValue, itemIndex) => {
-                            setGenero(itemValue);
-                        }}
-                        >
-                            {generos.map( gen => (
-                                <Picker.Item key={gen} label={gen} value={gen} />
-                            ))}
-                        </Picker>
+                            selectedValue={genero}
+                            style={{ 
+                                height: 50, 
+                                width: '100%', 
+                                marginBottom: 5,
+                                backgroundColor: '#ffffff',
+                                color: '#000'
+                                
+                            }}
+                            onValueChange={(itemValue, itemIndex) => {
+                                setGenero(itemValue);
+                            }}
+                            >   
+                                <Picker.Item label="Selecione um gênero" value="" enabled={false} />
+                                {generos.map( gen => (
+                                    <Picker.Item key={gen} label={gen} value={gen} />
+                                ))}
+                            </Picker>
+                        </WrappePicker>   
                     </WrapperSelect>
 
 
                     <WrapperSelect>
-                        <Ask>Idade:</Ask>   
-                        <Picker
-                        selectedValue={idade}
-                        style={{ 
-                            height: 50, 
-                            width: 300, 
-                            margin: 5,
-                            padding: 2,
-                            backgroundColor: '#f3f3f3',
-                            
-                        }}
-                        onValueChange={(itemValue, itemIndex) => {
-                            setIdade(itemValue);
-                        }}
-                    >
-                        {idades.map( ida => (
-                            <Picker.Item key={ida} label={ida.toString()} value={ida} />
-                        ))}
-                    </Picker>
+                        <Ask>Idade:</Ask>
+                        <WrappePicker>
+                            <Picker
+                            selectedValue={idade}
+                            style={{ 
+                                height: 50, 
+                                width: '100%', 
+                                marginBottom: 5,
+                                backgroundColor: '#ffffff',
+                                color: '#000'
+                                
+                            }}
+                            onValueChange={(itemValue, itemIndex) => {
+                                setIdade(itemValue);
+                            }}
+                        >   
+                            <Picker.Item label="Selecione uma idade" value='0' enabled={false} />
+                            {idades.map( ida => (
+                                <Picker.Item key={ida} label={ida.toString()} value={ida} />
+                            ))}
+                        </Picker>
+                        </WrappePicker>   
                     </WrapperSelect>
 
                 </FieldsSelect>

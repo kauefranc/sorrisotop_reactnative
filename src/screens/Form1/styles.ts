@@ -1,4 +1,5 @@
 import styled from "styled-components/native"
+import { RFValue } from "react-native-responsive-fontsize"
 
 export const Container = styled.ScrollView`
     flex: 1;
@@ -103,4 +104,13 @@ export const ButtonTextCancel = styled.Text`
 
 export const WrapperCheckBox = styled.View`
     
+`
+
+export const WrappePicker = styled.View`
+    width: ${RFValue(175)}px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #000;
+    border-radius: 4px;
+
 `
