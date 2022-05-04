@@ -3,6 +3,7 @@ import { ButtonText } from '../PresetForm/styles'
 import { Button, ButtonTextBlue, ButtonWhite, Container, Logo, Title } from './styles'
 import { useNavigation } from '@react-navigation/native';
 import NetInfo from "@react-native-community/netinfo";
+import api from '../../services/api';
 
 import { propsStack } from '../../routes/Stack/Models';
 import { CreateTable, getStudent } from '../../services/Students';
@@ -25,25 +26,46 @@ export function Home () {
 
 
     const getDataSchools = async () => {
-        
-        const schools = {
-            id: 3,
-            nome: "FMM"
-        }
 
-        await addSchool(schools);
-        console.log(schools);
+        
+        await api.get("/users/kauefranc")
+        .then(res => {
+            console.log(res.data)
+        })
+        .catch(error => console.log(error));
+
+
+        // await addSchool(schools);
+        // console.log(schools);
 
 
     }
 
     const postData = async () => {
 
-        // const allStudents =  await getSchools()
-        // console.log(allStudents);
+        const allStudents =  await getStudent() 
 
-        const allStudents =  await getStudent()
-        console.log(allStudents);
+        const dados = {
+
+            key: "1234",
+            data: allStudents
+
+        }
+
+        console.log("calma");
+
+        await api.post("/submit", dados, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then(res => {
+            console.log(res);
+            console.log(res.data)
+        })
+        .catch(error => console.log(error));
+        
+
     }
  
     return (

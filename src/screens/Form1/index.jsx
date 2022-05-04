@@ -56,6 +56,8 @@ export function Form1 () {
         if(r1 && r2 && r4 && r5 && r6) {
 
             const Student = {
+
+                enviado: 0,
                 escolaID: escola,
                 grau: grau,
                 serie: serie,
@@ -78,7 +80,7 @@ export function Form1 () {
                 r6: r6,
             }
 
-
+            console.log("antes")
             await addStudent(Student);
             console.log(Student)
 
