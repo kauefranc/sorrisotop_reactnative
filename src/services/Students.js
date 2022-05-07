@@ -49,7 +49,7 @@ export async function getStudent () {
 
     return new Promise( (resolve) =>{
         db.transaction((transaction) => {
-             transaction.executeSql("SELECT * FROM Studentfinal2;", [], (transaction, result) => {
+             transaction.executeSql("SELECT * FROM Studentfinal2 WHERE enviado = '0.0';", [], (transaction, result) => {
                 resolve(result.rows._array)
             });
         })
@@ -57,12 +57,24 @@ export async function getStudent () {
 
 }
 
-export async function updateStudent () {
+export async function updateStudent (id) {
 
     return new Promise( (resolve) =>{
         db.transaction((transaction) => {
-             transaction.executeSql("SELECT * FROM Studentfinal2;", [], (transaction, result) => {
+             transaction.executeSql("UPDATE Studentfinal2 SET enviado = '1.0' WHERE id = ?", [id], (transaction, result) => {
                 resolve(result.rows._array)
+            });
+        })
+    }) 
+
+}
+
+export async function deleteStudent () {
+
+    return new Promise( (resolve) =>{
+        db.transaction((transaction) => {
+             transaction.executeSql("DELETE FROM Studentfinal2;", [], (transaction, result) => {
+                resolve("Respostas removidas com sucesso!")
             });
         })
     }) 

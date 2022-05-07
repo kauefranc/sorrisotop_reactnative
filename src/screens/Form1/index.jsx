@@ -3,7 +3,7 @@ import React, { useState, useEffect }from "react";
 import { Picker } from '@react-native-picker/picker';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { useNavigation } from '@react-navigation/native';
-
+import SweetAlert from 'react-native-sweet-alert';
 
 import { RadioButton } from "../../components/RadioButton";
 
@@ -80,9 +80,7 @@ export function Form1 () {
                 r6: r6,
             }
 
-            console.log("antes")
             await addStudent(Student);
-            console.log(Student)
 
             setR1('');
             setR2('');
@@ -103,14 +101,9 @@ export function Form1 () {
             return;
         }
 
-
-
         alert("Preencha todos os campos!");
     }
 
-
-
-    
     return (
         <Container ref={ref}>
             <Header>
