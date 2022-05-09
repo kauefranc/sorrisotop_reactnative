@@ -7,7 +7,7 @@ import SweetAlert from 'react-native-sweet-alert';
 
 import { RadioButton } from "../../components/RadioButton";
 
-import { Container, Fields, FieldsSelect, WrapperSelect, WrappePicker, Ask, Header, Title, Button, ButtonText, WrapperCheckBox} from "./styles";
+import { Container, Texts, TextTitle, Card, Fields, FieldsSelect, WrapperSelect, WrappePicker, Ask, Header, Title, Button, ButtonText, WrapperCheckBox} from "./styles";
 import { addStudent, CreateTable, getStudent } from "../../services/Students";
 
 
@@ -22,7 +22,8 @@ export function Form1 () {
         escola,
         grau,
         serie,
-        etapa 
+        etapa,
+        nomeEscola 
     } = route.params;
 
     const [idade, setIdade] = useState(0);
@@ -109,6 +110,16 @@ export function Form1 () {
             <Header>
                 <Title>Formulário</Title>
             </Header>
+
+            <Fields>
+                <Card>
+                    <TextTitle>Informações</TextTitle>
+                    <Texts>Escola: {nomeEscola}</Texts>
+                    <Texts>Grau: {grau}</Texts>
+                    <Texts>Série: {serie}</Texts>
+                    <Texts>Etapa: {etapa}</Texts>
+                </Card>
+            </Fields>
             
             <Fields>
                 <FieldsSelect>

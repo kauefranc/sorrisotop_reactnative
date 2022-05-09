@@ -16,6 +16,33 @@ export const Header = styled.View`
 
 `
 
+export const Card = styled.View`
+
+    width: ${RFValue(400)}px;
+    padding: 30px;
+    background: #f4f4f4;
+    border: 1px #ddd solid;
+    border-radius: 30px;
+    color: #000;
+
+`
+
+export const TextTitle = styled.Text`
+    padding-bottom: 20px;
+    font-size: 20px;
+    font-family: ${({theme}) => theme.fonts.bold};
+    color: #000;
+    text-align: center;
+    text-transform: uppercase;
+`
+
+export const Texts = styled.Text`
+    padding-bottom: 20px;
+    font-size: 20px;
+    font-family: ${({theme}) => theme.fonts.bold};
+    color: #000;
+`
+
 export const Title = styled.Text`
     padding-bottom: 20px;
     font-size: 20px;

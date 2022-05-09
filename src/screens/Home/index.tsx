@@ -114,7 +114,7 @@ export function Home () {
  
     return (
         <Container>
-            <Logo source={require('../../../assets/logo.jpg')} />
+            <Logo source={require('../../../assets/logo.png')} />
             <Button onPress={ () => navigation.navigate('PresetForm')}>
                 <ButtonText>Iniciar Formulário</ButtonText>
             </Button>

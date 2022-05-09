@@ -41,34 +41,34 @@ export function PresetForm () {
     const seriesFundamental = [
         {
             id: 6,
-            nome: '6o ano'
+            nome: '6º ano'
         },
         {
             id: 7,
-            nome: '7o ano'
+            nome: '7º ano'
         },
         {
             id: 8,
-            nome: '8o ano'
+            nome: '8º ano'
         },
         {
             id: 9,
-            nome: '9o ano'
+            nome: '9º ano'
         },
     ]
 
     const seriesMedio = [
         {
             id: 1,
-            nome: '1o ano'
+            nome: '1º ano'
         },
         {
             id: 2,
-            nome: '2o ano'
+            nome: '2º ano'
         },
         {
             id: 2,
-            nome: '3o ano'
+            nome: '3º ano'
         },
     ]
 
@@ -204,12 +204,21 @@ export function PresetForm () {
                 <Fields>
                     <Button onPress={ () => {
 
+                    var nomeEscola;
+
+                    escolas.map( e => {
+                        if(e.id == escola){
+                            nomeEscola = e.nome
+                        }
+                    });
+
                     if(escola && grau && serie && etapa) {
                         navigation.navigate('Form1', {
                             escola,
                             grau,
                             serie,
-                            etapa
+                            etapa,
+                            nomeEscola
                         })
                     } else alert("Preencha todos os dados!");
                     
