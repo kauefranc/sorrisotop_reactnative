@@ -213,6 +213,8 @@ export function PresetForm () {
                     });
 
                     if(escola && grau && serie && etapa) {
+
+                        //AQUI 
                         navigation.navigate('Form1', {
                             escola,
                             grau,
