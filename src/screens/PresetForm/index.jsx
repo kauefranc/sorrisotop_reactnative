@@ -214,14 +214,24 @@ export function PresetForm () {
 
                     if(escola && grau && serie && etapa) {
 
-                        //AQUI 
-                        navigation.navigate('Form1', {
-                            escola,
-                            grau,
-                            serie,
-                            etapa,
-                            nomeEscola
-                        })
+                        if(etapa == "1"){
+                            navigation.navigate('Form1', {
+                                escola,
+                                grau,
+                                serie,
+                                etapa,
+                                nomeEscola
+                            })
+                        } else if (etapa == "2") {
+                            navigation.navigate('Form2', {
+                                escola,
+                                grau,
+                                serie,
+                                etapa,
+                                nomeEscola
+                            })
+                        }
+
                     } else alert("Preencha todos os dados!");
                     
                     }}>

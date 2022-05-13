@@ -9,7 +9,7 @@ import { Container, Texts, TextTitle, Card, Fields, FieldsSelect, WrapperSelect,
 import { addStudent, CreateTable, getStudent } from "../../services/Students";
 
 
-export function Form1 () {
+export function Form2 () {
     
    const ref = React.useRef(null);
 
@@ -30,18 +30,6 @@ export function Form1 () {
     const [r1, setR1] = useState('');
     const [r2, setR2] = useState('');
 
-    let bouncyCheckboxRef = null; 
-    const [checkboxState, setCheckboxState] = useState(false);
-    const [checkboxState2, setCheckboxState2] = useState(false);
-    const [checkboxState3, setCheckboxState3] = useState(false);
-    const [checkboxState4, setCheckboxState4] = useState(false);
-    const [checkboxState5, setCheckboxState5] = useState(false);
-
-
-    const [r4, setR4] = useState('');
-    const [r5, setR5] = useState('');
-    const [r6, setR6] = useState('');
-
     const idades = [];
     for(var i = 4; i < 25; i++) {
         idades.push(i);
@@ -52,7 +40,7 @@ export function Form1 () {
 
     const SalvaForm = async () => {
 
-        if(r1 && r2 && r4 && r5 && r6) {
+        if(r1 && r2 ) {
 
             const Student = {
 
@@ -68,29 +56,22 @@ export function Form1 () {
                 r1: r1,
                 r2: r2,
 
-                carie: checkboxState ? 1 : 0,
-                gengiva: checkboxState2 ? 1 : 0,
-                dentetorto: checkboxState3 ? 1 : 0,
-                limparboca: checkboxState4 ? 1 : 0,
-                saudebucal: checkboxState5 ? 1 : 0,
+                carie: 0,
+                gengiva:  0,
+                dentetorto: 0,
+                limparboca: 0,
+                saudebucal: 0,
 
-                r4: r4,
-                r5: r5,
-                r6: r6,
+                r4: 'null',
+                r5: 'null',
+                r6: 'null',
             }
 
             await addStudent(Student);
 
             setR1('');
             setR2('');
-            setCheckboxState(false);
-            setCheckboxState2(false);
-            setCheckboxState3(false);
-            setCheckboxState4(false);
-            setCheckboxState5(false);
-            setR4('');
-            setR5('');
-            setR6('');
+
             alert("Dados salvos com sucesso");
             ref.current.scrollTo({
                 x: 5,
@@ -183,10 +164,10 @@ export function Form1 () {
                 /> 
 
 
-                <Ask>2 - Você já foi orientado sobre como cuidar da sua sáude bucal?</Ask>
+                <Ask>2 - Após sua participação no projeto "Sorriso TOP", sua escovação e cuidados bucais... :</Ask>
                 <RadioButton 
                     selected={r2}
-                    options={['Sim', 'Não']} 
+                    options={['Melhorou', 'Nada mudou', 'Piorou']} 
                     onChangeSelect={(opt) => setR2(opt)}
                 /> 
 
