@@ -92,7 +92,6 @@ export function Form2 () {
 
             <Fields>
                 <Card>
-                    <TextTitle>Informações</TextTitle>
                     <Texts>Escola: {nomeEscola}</Texts>
                     <SameLine>
                         <Texts>Grau: {grau}</Texts>
