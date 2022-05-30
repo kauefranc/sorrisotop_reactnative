@@ -141,3 +141,19 @@ export const WrappePicker = styled.View`
     border-radius: 4px;
 
 `
+
+export const SameLine = styled.View`
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+`
+
+export const Line = styled.View`
+
+    border: .25px solid black;
+    width: 90%;
+    margin: ${RFValue(16)}px;
+
+`

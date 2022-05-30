@@ -7,7 +7,7 @@ import SweetAlert from 'react-native-sweet-alert';
 
 import { RadioButton } from "../../components/RadioButton";
 
-import { Container, Texts, TextTitle, Card, Fields, FieldsSelect, WrapperSelect, WrappePicker, Ask, Header, Title, Button, ButtonText, WrapperCheckBox} from "./styles";
+import { Container, Texts, TextTitle, Card, Fields, FieldsSelect, WrapperSelect, WrappePicker, Ask, Header, Title, Button, ButtonText, WrapperCheckBox, SameLine, Line} from "./styles";
 import { addStudent, CreateTable, getStudent } from "../../services/Students";
 
 
@@ -45,11 +45,11 @@ export function Form1 () {
     const [r6, setR6] = useState('');
 
     const idades = [];
-    for(var i = 4; i < 25; i++) {
+    for(var i = 5; i < 20; i++) {
         idades.push(i);
     }
 
-    const generos = ["Masculino","Feminino", "Outros"];
+    const generos = ["Masculino","Feminino", "Outros", "Prefiro não dizer"];
 
 
     const SalvaForm = async () => {
@@ -108,16 +108,17 @@ export function Form1 () {
     return (
         <Container ref={ref}>
             <Header>
-                <Title>Formulário</Title>
+                <Title>Sorriso TOP - Etapa {etapa}</Title>
             </Header>
 
             <Fields>
                 <Card>
                     <TextTitle>Informações</TextTitle>
                     <Texts>Escola: {nomeEscola}</Texts>
-                    <Texts>Grau: {grau}</Texts>
-                    <Texts>Série: {serie}</Texts>
-                    <Texts>Etapa: {etapa}</Texts>
+                    <SameLine>
+                        <Texts>Grau: {grau}</Texts>
+                        <Texts>Série: {serie}</Texts>
+                    </SameLine>
                 </Card>
             </Fields>
             
@@ -177,6 +178,8 @@ export function Form1 () {
 
                 </FieldsSelect>
 
+                <Line></Line>
+
                 <Ask>1 - Qual nota você dá para sua saúde bucal?</Ask>
                 <RadioButton 
                     selected={r1}
@@ -184,6 +187,7 @@ export function Form1 () {
                     onChangeSelect={(opt) => setR1(opt)}
                 /> 
 
+                <Line></Line>
 
                 <Ask>2 - Você já foi orientado sobre como cuidar da sua sáude bucal?</Ask>
                 <RadioButton 
@@ -192,6 +196,7 @@ export function Form1 () {
                     onChangeSelect={(opt) => setR2(opt)}
                 /> 
 
+                <Line></Line>
 
                 <Ask>3 - Qual(is) temas você gostaria de conhecer melhor?</Ask>
 
@@ -262,8 +267,7 @@ export function Form1 () {
                     />
                 </WrapperCheckBox>
 
-                
-
+                <Line></Line>
 
                 <Ask>4 - Há quanto tempo você não vai ao dentista?</Ask>
                 <RadioButton 
@@ -272,6 +276,8 @@ export function Form1 () {
                     onChangeSelect={(opt) => setR4(opt)}
                 /> 
 
+                <Line></Line>
+
                 <Ask>5 - Você já teve ou está com dor de dente?</Ask>
                 <RadioButton 
                     selected={r5}
@@ -279,6 +285,7 @@ export function Form1 () {
                     onChangeSelect={(opt) => setR5(opt)}
                 /> 
 
+                <Line></Line>
 
                 <Ask>6 - Sua gengiva sangra ou já sangrou?</Ask>
                 <RadioButton 

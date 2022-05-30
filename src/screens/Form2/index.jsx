@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { RadioButton } from "../../components/RadioButton";
 
-import { Container, Texts, TextTitle, Card, Fields, FieldsSelect, WrapperSelect, WrappePicker, Ask, Header, Title, Button, ButtonText, WrapperCheckBox} from "./styles";
+import { Container, Texts, TextTitle, Card, Fields, FieldsSelect, WrapperSelect, WrappePicker, Ask, Header, Title, Button, ButtonText, WrapperCheckBox, SameLine, Line} from "./styles";
 import { addStudent, CreateTable, getStudent } from "../../services/Students";
 
 
@@ -31,11 +31,11 @@ export function Form2 () {
     const [r2, setR2] = useState('');
 
     const idades = [];
-    for(var i = 4; i < 25; i++) {
+    for(var i = 5; i < 20; i++) {
         idades.push(i);
     }
 
-    const generos = ["Masculino","Feminino", "Outros"];
+    const generos = ["Masculino","Feminino", "Outros", "Prefiro não dizer"];
 
 
     const SalvaForm = async () => {
@@ -87,16 +87,17 @@ export function Form2 () {
     return (
         <Container ref={ref}>
             <Header>
-                <Title>Formulário</Title>
+                <Title>Sorriso TOP - Etapa {etapa}</Title>
             </Header>
 
             <Fields>
                 <Card>
                     <TextTitle>Informações</TextTitle>
                     <Texts>Escola: {nomeEscola}</Texts>
-                    <Texts>Grau: {grau}</Texts>
-                    <Texts>Série: {serie}</Texts>
-                    <Texts>Etapa: {etapa}</Texts>
+                    <SameLine>
+                        <Texts>Grau: {grau}</Texts>
+                        <Texts>Série: {serie}</Texts>
+                    </SameLine>
                 </Card>
             </Fields>
             
@@ -156,6 +157,8 @@ export function Form2 () {
 
                 </FieldsSelect>
 
+                <Line></Line>
+
                 <Ask>1 - Qual nota você dá para sua saúde bucal?</Ask>
                 <RadioButton 
                     selected={r1}
@@ -163,6 +166,7 @@ export function Form2 () {
                     onChangeSelect={(opt) => setR1(opt)}
                 /> 
 
+                <Line></Line>
 
                 <Ask>2 - Após sua participação no projeto "Sorriso TOP", sua escovação e cuidados bucais... :</Ask>
                 <RadioButton 
@@ -177,7 +181,6 @@ export function Form2 () {
                             Finalizar
                         </ButtonText>
                     </Button>
-
                 </Fields> 
 
             </Fields>

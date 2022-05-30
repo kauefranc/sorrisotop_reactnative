@@ -41,34 +41,34 @@ export function PresetForm () {
     const seriesFundamental = [
         {
             id: 6,
-            nome: '6º ano'
+            nome: 'Sexto ano'
         },
         {
             id: 7,
-            nome: '7º ano'
+            nome: 'Sétimo ano'
         },
         {
             id: 8,
-            nome: '8º ano'
+            nome: 'Oitavo ano'
         },
         {
             id: 9,
-            nome: '9º ano'
+            nome: 'Nono ano'
         },
     ]
 
     const seriesMedio = [
         {
             id: 1,
-            nome: '1º ano'
+            nome: 'Primeiro ano'
         },
         {
             id: 2,
-            nome: '2º ano'
+            nome: 'Segundo ano'
         },
         {
             id: 2,
-            nome: '3º ano'
+            nome: 'Terceiro ano'
         },
     ]
 
