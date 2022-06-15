@@ -4,10 +4,11 @@ import { Picker } from '@react-native-picker/picker';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { useNavigation } from '@react-navigation/native';
 import SweetAlert from 'react-native-sweet-alert';
+import { Alert } from "react-native";
 
 import { RadioButton } from "../../components/RadioButton";
 
-import { Container, Texts, TextTitle, Card, Fields, FieldsSelect, WrapperSelect, WrappePicker, Ask, Header, Title, Button, ButtonText, WrapperCheckBox, SameLine, Line} from "./styles";
+import { Container, Texts, TextTitle, Card, Fields, FieldsSelect, WrapperSelect, WrappePicker, Ask, Header, Title, Button, ButtonText, WrapperCheckBox, SameLine, Line, Fields1} from "./styles";
 import { addStudent, CreateTable, getStudent } from "../../services/Students";
 
 
@@ -93,7 +94,9 @@ export function Form1 () {
             setR4('');
             setR5('');
             setR6('');
-            alert("Dados salvos com sucesso");
+            setIdade(0)
+            setGenero('')
+            Alert.alert("Dados salvos com sucesso!","Obrigado pela participação!");
             ref.current.scrollTo({
                 x: 5,
                 y: 5,
@@ -102,7 +105,7 @@ export function Form1 () {
             return;
         }
 
-        alert("Preencha todos os campos!");
+        Alert.alert("Aviso!", "Preencha todos os campos!");
     }
 
     return (
@@ -111,7 +114,7 @@ export function Form1 () {
                 <Title>Sorriso TOP - Etapa {etapa}</Title>
             </Header>
 
-            <Fields>
+            <Fields1>
                 <Card>
                     <Texts>Escola: {nomeEscola}</Texts>
                     <SameLine>
@@ -119,7 +122,7 @@ export function Form1 () {
                         <Texts>Série: {serie}</Texts>
                     </SameLine>
                 </Card>
-            </Fields>
+            </Fields1>
             
             <Fields>
                 <FieldsSelect>

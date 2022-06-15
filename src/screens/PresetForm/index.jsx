@@ -3,6 +3,7 @@ import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 import { propsStack } from '../../routes/Stack/Models';
 import { addSchool, CreateTableSchools, getSchools } from '../../services/Schools';
+import { Alert } from 'react-native';
 
 import { Header, Container, Title, Body, Fields, TitlePicker, Button, ButtonText, ButtonCancel, ButtonTextCancel, WrappePicker } from './styles'
 
@@ -232,7 +233,7 @@ export function PresetForm () {
                             })
                         }
 
-                    } else alert("Preencha todos os dados!");
+                    } else Alert.alert("Aviso!", "Preencha todos os dados!");
                     
                     }}>
                         <ButtonText>

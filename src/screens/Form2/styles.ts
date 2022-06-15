@@ -19,7 +19,7 @@ export const Header = styled.View`
 export const Card = styled.View`
 
     width: ${RFValue(400)}px;
-    padding: 30px;
+    padding: 15px 40px 5px 40px;
     background: #f4f4f4;
     border: 1px #ddd solid;
     border-radius: 30px;
@@ -53,6 +53,14 @@ export const Title = styled.Text`
 export const Body = styled.View`
     display: flex;
     align-items: center;
+`
+
+export const Fields1 = styled.View`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
 `
 
 export const Fields = styled.View`

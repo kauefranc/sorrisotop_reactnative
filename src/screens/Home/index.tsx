@@ -4,6 +4,7 @@ import { Button, ButtonTextBlue, ButtonWhite, Container, Logo, Title } from './s
 import { useNavigation } from '@react-navigation/native';
 import NetInfo from "@react-native-community/netinfo";
 import api from '../../services/api';
+import { Alert } from 'react-native';
 
 import { propsStack } from '../../routes/Stack/Models';
 import { CreateTable, deleteStudent, getStudent, updateStudent } from '../../services/Students';
@@ -11,32 +12,65 @@ import { addSchool, CreateTableSchools, deleteSchools, getSchools } from '../../
 
 export function Home () {
     const navigation = useNavigation<propsStack>();
+    const [schools, setSchools] = useState([]);
+    const [sent, setSent] = useState([])
+    const [conected, setConected] = useState(false);
 
-
-
+    //onCreate
     useEffect(() => {
-        CreateTable();
-        CreateTableSchools();
         const conexao = NetInfo.addEventListener(state => {
             // console.log("Connection type", state.type);
             // console.log("Is connected?", state.isConnected);
             if( state.isConnected ) setConected(true);
         });
-
-        
+        onCreate();
     }, [])
 
-    const [schools, setSchools] = useState([]);
-    const [sent, setSent] = useState([])
-    const [conected, setConected] = useState(false);
+    //onChange Schools
+    useEffect(() => {
+                
+            if(schools.length){
+
+                schools.map( async (school) =>  {
+                    await addSchool(school)                
+                    .then(res => {
+                        console.log("foi")
+                    })
+                    .catch(error => {
+                        console.log(error)
+                        Alert.alert("Erro!", "Não foi possível atualizar as escolas localmente!")
+                    });
+                })
+                Alert.alert("Feito!", "Escolas atualizadas com sucesso!")        
+            }
+
+    }, [schools]);
+
+    useEffect(() => {
+        //remove e atualiza a tabela de escolas.
+            sent.map( async (e) => {
+                await updateStudent(e)
+                .then(res => {
+                    console.log("foi")
+                })
+                .catch(error => {
+                    console.log(error)
+                    Alert.alert("Erro!", "Não foi possível atualizar as escolas localmente!")
+                });
+            })
 
 
+    }, [sent]);
+
+
+    const onCreate = async () => {
+        CreateTable();
+        CreateTableSchools();
+    }
 
     const getDataSchools = async () => {
 
         const conexao = NetInfo.addEventListener(state => {
-            // console.log("Connection type", state.type);
-            // console.log("Is connected?", state.isConnected);
             if( state.isConnected ) setConected(true);
             else setConected(false);
         });
@@ -48,39 +82,25 @@ export function Home () {
                 .then(res => {
                     setSchools(res.data);
                 })
-                .catch(error => console.log(error));
+                .catch(error => {
+                    console.log(error)
+                    Alert.alert("Erro!", "Não foi possível baixar as escolas!")
+                });
                 
-                //remove e atualiza a tabela de escolas.
-                if(schools){
-                    await deleteSchools();
 
-                    schools.map( async (school) =>  {
-                        await addSchool(school);
-                    })
-                }
-
-                alert("Escolas atualizadas com sucesso!")
-
-        } else alert ("Sem conexão com a internet");
+        } else Alert.alert ("Aviso!", "Sem conexão com a internet");
         
     }
 
     const postData = async () => {
-
-
         const conexao = NetInfo.addEventListener(state => {
-            // console.log("Connection type", state.type);
-            // console.log("Is connected?", state.isConnected);
             if( state.isConnected ) setConected(true);
             else setConected(false);
         });
 
         if(conected){
-
-                // await updateStudent()
-                // await deleteStudent();
         
-                const Students =  await getStudent() 
+                const Students : any = await getStudent() 
                 console.log(Students);
 
                 if (Students.length) {
@@ -96,19 +116,16 @@ export function Home () {
                         }
                     })
                     .then(res => {
-                        const dados = res.data.dados
+                        const dados = res.data.dados //recebe apenas o ID
                         setSent(dados);
                     })
                     .catch(error => console.log(error));
             
-                    sent.map( async (e) => {
-                        await updateStudent(e);
-                    })
 
-                    alert("Dados enviados com sucesso")
-                } else alert("Sem dados a serem enviados!")
+                    Alert.alert ("Feito!", "Dados enviados com sucesso");
+                } else Alert.alert("Aviso!", "Sem dados a serem enviados!")
 
-        } else alert ("Sem conexão com a internet");
+        } else Alert.alert ("Aviso!","Sem conexão com a internet");
 
     }
  

@@ -1,8 +1,9 @@
 {
   "expo": {
-    "name": "sorrisotop",
-    "slug": "sorrisotop",
-    "version": "1.0.0",
+    "name": "Sorriso TOP",
+    "slug": "Sorrisotop",
+    "version": "1.0.4",
+    "icon": "./assets/icon-semfundo.png",
     "assetBundlePatterns": [
       "**/*"
     ],
